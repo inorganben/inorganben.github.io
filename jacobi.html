@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacobi</title>
+    <link rel="stylesheet" href="/wuzheng/math/public.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-webfont/1.6.0/style.min.css" />
+    <link rel="icon" href="/wuzheng/math/icon.png" type="image/png">
+    <script type="text/javascript" async
+    src="/wuzheng/MathJax/es5/tex-mml-chtml.js"></script>
+
+    <script>
+        MathJax = {
+        options: {
+            enableMenu: false,          // set to false to disable the menu
+            }
+        };
+    </script>
+
+</head>
+<body>
+    <h1>多重积分的变量替换</h1>
+    <hr>
+    <p>将\(xoy\)平面上的积分变换成\(uov\)平面上的：</p>
+    <div style="border-radius: 1000px;text-align: center; ">
+        <img class="ooo" width="500" src="./1.png">
+    </div>
+    <div class="math">\[\iint\limits_{R} f(x,y)dxdy=
+        \iint\limits_{G}f(g(u,v),h(u,v))\left | J(u,v) \right | dudv\]</div>
+    <div class="math">\[J(u,v)=\begin{vmatrix}
+        \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v}\\
+        \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+       \end{vmatrix}=\frac{\partial x}{\partial u}\cdot \frac{\partial y}
+       {\partial v}-\frac{\partial x}{\partial v}\cdot \frac{\partial y}{\partial u}\]</div>
+    <p>上式中的 \(\left | J(u,v) \right |\) 的绝对值在外代数下应该去掉。</p>
+    <p>一元函数积分中的还原积分法：</p>
+    <p>&#12288&#12288————就是链式法则的逆用（此处只注重换元）</p>
+    <div class="math">\[\int \frac{df}{du} \cdot \frac{du}{dx} \cdot dx=\int \frac{df}{dx} \cdot dx=\int df \]</div>
+    <p>二元函数的链式法则为：（以对x求偏导为例）</p>
+    <div class="math">\[\frac{\partial z}{\partial x}=\frac{\partial z}{\partial u}  \cdot \frac{\partial u}{\partial x}
+        +\frac{\partial z}{\partial v}\cdot \frac{\partial v}{\partial x}\]</div>
+    <!-- <div style="border-radius: 1000px;text-align: center; ">
+        <img class="ooo" width="500" src="./73573cc00e9e74448cf32b72f873b82.png">
+        <img width="500" src="./ef882fa13f8f6030122d1b86f8f8945.png">
+    </div> -->
+    <!-- <div class="imgs">
+        <img width="500" src="./73573cc00e9e74448cf32b72f873b82.png">
+    </div> -->
+    <p>对于一个二元函数\(f(x,y)\)， 设其原函数是\(F(x,y)\)</p>
+    <p>则，混合导数为：</p>
+    <div class="math">\[\frac{\partial ^{2} F}{\partial x\partial y} \]</div>
+    <p>二重积分为：</p>
+    <div class="math">\[\iint \frac{\partial ^{2} F}{\partial x\partial y} dxdy\]</div>
+    <p>我们的目标是进行换元，即将\(dxdy \longrightarrow dudv\)</p>
+    <div style="border-radius: 1000px;text-align: center; ">
+        <img class="ooo" width="500" src="./2.png">
+    </div>
+    <p>根据上面的结论，我们可以看出实际上就是将原平面\(G\)的图像变换到新平面\(R\)上，这是一个非线性映射，但在极小的一个区域
+        上，可以近似看做为线性映射，于是有雅可比矩阵：
+    </p>
+    <div class="math">\begin{bmatrix}
+        \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v}\\
+        \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+        \end{bmatrix}</div>
+    <p>其对应的雅可比矩阵就是这个变换的度量，但是，当我们用\(\partial u\partial v\)乘以二阶雅可比行列式的展开时：</p>
+    <div class="math">\[(\partial u\partial v)(\frac{\partial x}{\partial u}\cdot \frac{\partial y}
+        {\partial v}-\frac{\partial x}{\partial v}\cdot \frac{\partial y}{\partial u})=
+    \partial x\partial y-\partial x\partial y\]</div>
+    <p>会得到这个离谱的等式，一般的教材会写这个\(\frac{\partial y}{\partial x}\)是一个整体，不可拆分，
+        但是如果其可拆，将会使得式子变得更易理解，所以我们不妨来深入思考一下为什么不可拆以及如何能够合理的拆开
+    </p>
+    <hr>
+    <h4>微分和导数</h4>
+    <!-- <p>导数是某个量关于另一个量的变化律的关系。其必然是“一对一”的关系，两个量的变化的比值。但是这两个变化可以由多个因素叠加导致。
+        或者说导数相比的上下两部分中，各个因素的关系只能是加和而不能是乘积。
+    </p>
+    <p>微分是关于某一个量的变化，变化是一个“结果”，其可由多个因子影响，不同于导数，导数只能由两个量变化共同决定，</p> -->
+    <p>导数通常的表现是上下两部分相除，是“一对一”的关系，即对于一个部分的变化会有一个与之对应的部分的变化，
+        这个自然可以联想到一元函数的自变量与因变量是两个对应的关系，上升到多元的情况，可以以此做拓展，若对应到多对一的情况，就是多个变量的变化的叠加引起一个部分的改变，但是这多个量之间的关系必须是加和，不能是乘积关系。多对多则可以看成是多对一的进一步的拓展。</p>
+    <p>微分则是一部分的改变，这一部分改变亦可是多个量的加和，微分就是导数的上下对应的两部分。</p>
+    <p>课本说，微分\(dy\)是一个极小变化\(\Delta y\)的线性主要部分，此处是指一阶微分，\(d ^{2} y\)高阶微分与一阶微分之和
+        \(dy+d ^{2} y\)则可以看成是\(\Delta y\)的“高阶线性主要部分”，通过逐渐高阶的“修正”，不断逼近一个极小变化：
+    </p>
+    <div class="math">\[dy+d ^{2} y+d ^{3} y+\cdots +d ^{n} y+d\xi =\Delta y\]</div>
+    <p>处处可导函数处处都有微分，如果我们将微分看做是一种映射，即：</p>
+    <div class="math">\[\begin{matrix}
+        f_{d}: R\longrightarrow D_{R} \\
+       \:\:\:\:\:\:\:x\longmapsto dx
+       \end{matrix}\]</div>
+    <p>此处先暂时不考虑值域\(D_{R}\)是一个什么样的元素构成的集合，也不考虑集合中元素的运算关系，引入这个集合仅仅是为了帮助我们分离导数的上下两部分。</p>
+    <div style="border-radius: 1000px;text-align: center; ">
+        <img class="ooo" width="400" src="./3.png">
+    </div>
+    <p>将导数看做是上下独立的两个微分相除的结果，我们上面将微分定义为\(x(x\in R)\)到\(D_{R}\)的一个映射的值。</p>
+    <p>对于\(x,y(x,y\in R)\)有\(y=f(x)\)，设\(dx,dy\)是\(x,y\)在\(D_{R}\)上的像，\(dx,dy\)有关系：\(dy=dx\cdot f'(x)\)，\(f'(x)\)为函数\(y=f(x)\)在每一点的切线的斜率构成的函数，也就是我们说的导函数。</p>
+    <p>可以这样看待\(D_{R}\)中的元素，不认为他们是数，但是在\(R\)上有原像，不同的两个元素之间存在倍数关系，例如在一个函数取 \(x=5\) 的时候，有：</p>
+    <div class="math">\[d5_{y} =f'(5)d5_{x} \]</div>
+    <p>然后说多元的情况。</p>
+    <p>多元的情况，变量不唯一，导致侧重点可以是全部也可以偏指一方，由此我们有偏导数、偏微分、全导数和全微分的概念。</p>
+    <p>首先来看一个经典的公式，偏导数的链式法则不可以消掉：</p>
+    <div class="math">\[\frac{\partial z}{\partial x}=\frac{\partial z}{\partial u}  \cdot \frac{\partial u}{\partial x}
+        +\frac{\partial z}{\partial v}\cdot \frac{\partial v}{\partial x}\]</div>
+    <p>这里其实是可约的，但是并不能直接消掉，我们可以先来讨论一下什么是偏微分什么是全微分。</p>
+    <p>其实这两个概念很容易由刚刚的过程中拓展出来，刚刚讨论的微分都是对于一元函数的，而我们在最上面说微分就是一部分的改变，这个改变在多元函数这里是由多个变量的叠加引起的，为什么是叠加？因为我们多元函数的自变量的坐标轴是正交的，若将极小的变化看做是线性的，它们就好比是向量，于是结果就是线性叠加的了。</p>
+    <p>由多个变量的变化叠加产生的变化，就是一个全微分，而这些参与叠加的变化本身也是一个微分，便是偏微分了。</p>
+    <p>那么由此，再理解偏导数和全导数就不难了，我们上面说导数需要上下两个微分是一对一的关系，我们可以让上面的微分对应下面的一个偏微分，得到的就是一个关于这个偏微分的偏导数，而如果将下面的偏微分引起的变化看做一个整体，便是全微分了，但是这各个坐标轴上的变量都是独立的，那么导数岂不成了一对多了，于是我们需要这些偏微分之间有联系，如果他们都由一个共同的参数\(t\)决定，那么\(\frac{df}{dt} \)就是\(f\)关于\(t\)的全导数</p>
+    <p>写出来全微分看看，如果有一个函数\(t=f(m,n)\)，那么关于\(t\)的全导数就是：</p>
+    <div class="math">\[dt=\frac{\partial f}{\partial m}dm+ \frac{\partial f}{\partial n}dn \]</div>
+    <p>约掉\(\partial m与dm，\partial n与dn\)，得：</p>
+    <div class="math">\[dt=\partial f+\partial f=2\partial f=2\partial t\:\:... ？？？\]</div>
+    <p>显然是不能直接约掉的，分开来看两个偏微分：</p>
+    <div class="math">\[\frac{\partial f}{\partial m}dm\:\:\:\:\:\:\frac{\partial f}{\partial n}dn\]</div>
+    <p>应当思考到两个\(df\)是不一样的，他们分别是由两个自变量的偏微分引起的因变量的偏微分，一般来说这两个自变量对因变量的效果是不同的，故而对应的两个\(df\)也不一样，我们可以引进以下记号来表示具体是由哪个自变量引起的因变量的变化：</p>
+    <div class="math">\[(\partial f)_{m}\:\:\:\:\:\:\:\:\:\:(\partial f)_{n}\]</div>
+    <p>于是，全微分按我们的记号可以改写为：</p>
+    <div class="math">\[dt=(\partial f)_{m}+(\partial f)_{n}\]</div>
+    <p>此时再看偏导数的链式法则，由于我们先前没有区分两个\(\partial z\)都是由谁引起的变化，所以贸然消掉下面的微分就会让上面误认为等同，但是实际上他们是不同的微分，可以进一步改写偏导数的链式法则，设\(z=z(u,v)且u=u(x,y),v=v(x,y)\)</p>
+    <div class="math" id="m1">
+        \begin{matrix}
+        \frac{\partial z}{\partial u}=(\partial z)_{u}\:\:\:\:\:  
+        \frac{\partial u}{\partial x}=(\partial u)_{x}\\
+        \frac{\partial z}{\partial u}=\frac{\partial z}{\partial u}\cdot \frac{\partial u}{\partial x}
+        +\frac{\partial z}{\partial v}\cdot \frac{\partial v}{\partial x}=
+        \frac{(\partial z)_{u_{x}}+(\partial z)_{v_{x}}}{\partial x} 
+        \end{matrix}
+    </div>
+    <p>类似的对\(y\)求偏导有：</p>
+    <div class="math" id="m2">
+        \begin{matrix}
+        \frac{\partial z}{\partial u}=(\partial z)_{u}\:\:\:\:\:  
+        \frac{\partial u}{\partial y}=(\partial u)_{y}\\
+        \frac{\partial z}{\partial u}=\frac{\partial z}{\partial u}\cdot \frac{\partial u}{\partial y}
+        +\frac{\partial z}{\partial v}\cdot \frac{\partial v}{\partial y}=
+        \frac{(\partial z)_{u_{y}}+(\partial z)_{v_{y}}}{\partial y} 
+        \end{matrix}
+    </div>
+    <p>下面讨论高阶情况。</p>
+    <div class="math">\[\frac{\partial ^{2}y}{\partial x^{2}} =\frac{\partial (\frac{\partial y}{\partial x}) }{\partial x}
+        =\frac{\partial ^{2}y}{\partial ^{2}x}\cdot \frac{1}{\partial x}   \]</div>
+    <p>又有混合导数定理：</p>
+    <div class="math">\[\frac{\partial ^{2}z}{\partial x\partial y} =\frac{\partial ^{2}z}{\partial y\partial x} \]</div>
+    <p>二阶微分视作将映射\(f_{d}\)第一次的值域做为第二次的定义域，再进行一次映射，可以记作\(f^{2}_{d}\)：</p>
+    <div class="math">\[\begin{matrix}
+        f^{2}_{d}: D_{R}\longrightarrow D^{2}_{R} \\
+       \:\:\:\:\:\:\:\:\:\:dx\longmapsto d^{2}x
+       \end{matrix}\]</div>
+    <p>\(x\)，\(dx\)，\(d^{2}x\)之间的关系为相等，因为无论是\(f_{d}\)映射还是\(f^{2}_{d}\)映射，对于自变量都是直接映射的，而因变量之间则存在与自变量之间的关系。自变量\(dx+d ^{2} x+d ^{3} x+\cdots +d ^{n} x\)都是等价的。</p>
+    <p>再来看函数\(f\)的因变量及其映射的像们\(dy+d ^{2} y+d ^{3} y+\cdots +d ^{n} y\)之间的关系，数与数之间存在倍数关系，自变量与对应的因变量之间的倍数关系可以构成一个函数，记作\(f\)，\(dx，dy\)之间存在数量关系，记作\(f'(x)\)，重复嵌套这个关系，则\(dy\)与\(d^{2}y\)之间的关系为：\(d^{2}y=[f'(x)dx]'d^{2}x\)</p>
+    <div class="math">\begin{matrix}
+        d^{2}y=[f'(x)dx]'d^{2}x \:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\:\\
+        =[f''(x)\cdot d^{2}x]\cdot d^{2}x\\
+       =f''(x)\cdot (d^{2}x)^{2}\:\:\:\:\:\:\:\\
+       =f''(x)\cdot (dx)^{2}\:\:\:\:\:\:\:\:\:
+       \end{matrix}</div>
+    <p>混合导数定理也就变得显然了：</p>
+    <div class="mathl">\[\frac{\partial ^{2}z}{\partial x\partial y}=
+        \frac{\partial (\frac{\partial z}{\partial y}) }{\partial x}=
+        \frac{\partial ^{2}z}{\partial ^{2}y}\cdot \frac{1}{\partial x} =
+        \frac{\partial ^{2}z}{\partial y}\cdot \frac{1}{\partial x}\]</div>
+    <div class="mathl">\[\frac{\partial ^{2}z}{\partial y\partial x}=
+        \frac{\partial (\frac{\partial z}{\partial x}) }{\partial y}=
+        \frac{\partial ^{2}z}{\partial ^{2}x}\cdot \frac{1}{\partial y} =
+        \frac{\partial ^{2}z}{\partial x}\cdot \frac{1}{\partial y}\]</div>
+    <p>因为\(x,y\)都是独立的自变量，所以\(Fubini\)定理也变得显然：</p>
+    <div class="math">\[\iint \frac{\partial ^{2}z}{\partial x\partial y}\cdot \partial x\partial y =
+        \iint \frac{\partial ^{2}z}{\partial y\partial x}\cdot \partial y\partial x\]</div>
+    <p>现在回到雅可比矩阵上：</p>
+    <div class="mathl">\[\begin{matrix}
+        \begin{bmatrix}
+         \frac{\partial x}{\partial u}  & \frac{\partial x}{\partial v} \\
+         \frac{\partial y}{\partial u}  & \frac{\partial y}{\partial v}
+        \end{bmatrix}
+        \begin{bmatrix}
+        \vec{du}\\
+        \vec{dv}  
+        \end{bmatrix}=
+        \begin{bmatrix}
+        \vec{dx}\\
+        \vec{dy}  
+        \end{bmatrix} \\
+         =\begin{bmatrix}
+         \frac{\partial x}{\partial u}\cdot \vec{du}+\frac{\partial x}{v}\cdot \vec{dv}    \\
+         \frac{\partial y}{\partial u}\cdot \vec{du}+\frac{\partial y}{v}\cdot \vec{dv}  
+        \end{bmatrix}\\
+        =\begin{bmatrix}
+        (\partial x)_{u}+(\partial x)_{v}    \\
+        (\partial y)_{u}+(\partial y)_{v}
+        \end{bmatrix}=\begin{bmatrix}
+        \vec{du}\\
+        \vec{dv}  
+        \end{bmatrix}
+        \end{matrix}\]</div>
+    <p>\(dx \cdot dy = dA\)表两个正交方向的极小变化围成的面积，\(du \cdot dv = dA'\)代表换元之后，两个极小变化发生线性变换之后围成的面积，有关系：</p>
+    <div class="math">\[\left | J \right |dA'=dA \]</div>
+    <p>故有：</p>
+    <div class="math">\[\iint\limits_{R} f(x,y)dxdy=
+        \iint\limits_{G}f(g(u,v),h(u,v))\left | J(u,v) \right | dudv\]</div>
+</body>
+</html>
