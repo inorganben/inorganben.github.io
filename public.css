@@ -1,0 +1,143 @@
+/*---------------基础内容的style------------------*/
+body{
+    background-color: #232222;
+    padding-left: 18%;
+    padding-right: 18%;
+    padding-top: 5%;
+    padding-bottom: 20%;
+}
+
+.math{
+    color: #ffffff;
+    font-size: 140%;
+}
+
+.mathl{
+    color: #ffffff;
+    font-size: 165%;
+}
+
+.ooo{
+    border-radius: 10px;
+}
+/* .imgs{
+    text-align: center;
+    border-radius: 25px;
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+} */
+
+p, h1, h4{
+    color: lightblue;
+    /* font-family: "霞鹜文楷"; */
+    font-family: "LXGW WenKai", sans-serif;
+}
+
+h5{
+    color: rgb(115, 167, 250);
+    /* rgb(223, 173, 230) */
+    /* font-family: "霞鹜文楷"; */
+    font-family: "LXGW WenKai", sans-serif;
+}
+
+p{
+    font-size: 140%;
+}
+
+h1{
+    font-size: 310%;
+}
+
+h4{
+    font-size: 200%;
+}
+
+h5{
+    font-size: 175%;
+}
+
+
+#m1{
+    font-size: 180%;
+}
+
+#m2{
+    font-size: 180%;
+}
+
+.zoom {
+    transform: scale(0.8); /* 缩小比例，可以根据实际情况进行调整 */
+    transform-origin: 0 0; /* 缩放起点，可以根据实际情况进行调整 */
+}
+
+.article-b{
+    padding-left: 10%;
+}
+
+.article{
+    color: lightblue;
+    /* font-family: "霞鹜文楷"; */
+    font-family: "LXGW WenKai", sans-serif;
+    font-size: 180%;
+}
+
+p::selection, h1::selection, h4::selection, h5::selection {
+    background-color: #596c73;
+    color: aliceblue;
+  }
+
+.mmm{
+    background: url(../99999\ -\ 副本.png);
+}
+  
+
+/*-----------------------------------------------------------*/
+
+
+
+/* 隐藏 Chrome、Safari 和 Opera 的滚动条 */
+.example::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* 隐藏 IE、Edge 和 Firefox 的滚动条 */
+  .example {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+/*--------链接css改变----------*/
+
+  a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* 状态一: 未被访问过的链接 */
+a:link {
+    text-decoration: none;
+    color: lightblue;
+}
+
+/* 状态二: 已经访问过的链接 */
+a:visited {
+    text-decoration: none;
+    color: lightblue;
+}
+
+/* 状态三: 鼠标划过(停留)的链接(默认红色) */
+a:hover {
+    text-decoration: none;
+    color:aqua;
+}
+/* 状态四: 被点击的链接 */
+a:active {
+    text-decoration: none;
+    color: lightblue;
+}
+
+/*----------------------------------*/
