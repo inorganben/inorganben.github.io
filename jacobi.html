@@ -24,9 +24,7 @@
     <h1>多重积分的变量替换</h1>
     <hr>
     <p>将\(xoy\)平面上的积分变换成\(uov\)平面上的：</p>
-    <div style="border-radius: 1000px;text-align: center; ">
-        <img class="ooo" width="500" src="./1.png">
-    </div>
+
     <div class="math">\[\iint\limits_{R} f(x,y)dxdy=
         \iint\limits_{G}f(g(u,v),h(u,v))\left | J(u,v) \right | dudv\]</div>
     <div class="math">\[J(u,v)=\begin{vmatrix}
@@ -54,9 +52,6 @@
     <p>二重积分为：</p>
     <div class="math">\[\iint \frac{\partial ^{2} F}{\partial x\partial y} dxdy\]</div>
     <p>我们的目标是进行换元，即将\(dxdy \longrightarrow dudv\)</p>
-    <div style="border-radius: 1000px;text-align: center; ">
-        <img class="ooo" width="500" src="./2.png">
-    </div>
     <p>根据上面的结论，我们可以看出实际上就是将原平面\(G\)的图像变换到新平面\(R\)上，这是一个非线性映射，但在极小的一个区域
         上，可以近似看做为线性映射，于是有雅可比矩阵：
     </p>
@@ -90,9 +85,6 @@
        \:\:\:\:\:\:\:x\longmapsto dx
        \end{matrix}\]</div>
     <p>此处先暂时不考虑值域\(D_{R}\)是一个什么样的元素构成的集合，也不考虑集合中元素的运算关系，引入这个集合仅仅是为了帮助我们分离导数的上下两部分。</p>
-    <div style="border-radius: 1000px;text-align: center; ">
-        <img class="ooo" width="400" src="./3.png">
-    </div>
     <p>将导数看做是上下独立的两个微分相除的结果，我们上面将微分定义为\(x(x\in R)\)到\(D_{R}\)的一个映射的值。</p>
     <p>对于\(x,y(x,y\in R)\)有\(y=f(x)\)，设\(dx,dy\)是\(x,y\)在\(D_{R}\)上的像，\(dx,dy\)有关系：\(dy=dx\cdot f'(x)\)，\(f'(x)\)为函数\(y=f(x)\)在每一点的切线的斜率构成的函数，也就是我们说的导函数。</p>
     <p>可以这样看待\(D_{R}\)中的元素，不认为他们是数，但是在\(R\)上有原像，不同的两个元素之间存在倍数关系，例如在一个函数取 \(x=5\) 的时候，有：</p>
